@@ -606,7 +606,7 @@ angular.module('mentio', [])
                 scope.adjustScroll = function (direction) {
                     var menuEl = element[0];
                     var menuItemsList = menuEl.querySelector('ul');
-                    var menuItem = (menuEl.querySelector('[mentio-menu-item].active') || 
+                    var menuItem = (menuEl.querySelector('[mentio-menu-item].active') ||
                         menuEl.querySelector('[data-mentio-menu-item].active'));
 
                     if (scope.isFirstItemActive()) {
@@ -651,8 +651,9 @@ angular.module('mentio', [])
                     });
                 });
 
-                element.bind('click', function () {
+                element.bind('touchstart', function (e) {
                     controller.selectItem(scope.item);
+                    e.stopPropagation();
                     return false;
                 });
             }

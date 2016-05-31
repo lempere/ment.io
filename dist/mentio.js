@@ -606,7 +606,7 @@ angular.module('mentio', [])
                 scope.adjustScroll = function (direction) {
                     var menuEl = element[0];
                     var menuItemsList = menuEl.querySelector('ul');
-                    var menuItem = (menuEl.querySelector('[mentio-menu-item].active') || 
+                    var menuItem = (menuEl.querySelector('[mentio-menu-item].active') ||
                         menuEl.querySelector('[data-mentio-menu-item].active'));
 
                     if (scope.isFirstItemActive()) {
@@ -651,8 +651,9 @@ angular.module('mentio', [])
                     });
                 });
 
-                element.bind('click', function () {
+                element.bind('touchstart', function (e) {
                     controller.selectItem(scope.item);
+                    e.stopPropagation();
                     return false;
                 });
             }
@@ -1251,4 +1252,4 @@ angular.module('mentio')
         };
     }]);
 
-angular.module("mentio").run(["$templateCache", function($templateCache) {$templateCache.put("mentio-menu.tpl.html","<style>\n.scrollable-menu {\n    height: auto;\n    max-height: 300px;\n    overflow: auto;\n}\n\n.menu-highlighted {\n    font-weight: bold;\n}\n</style>\n<ul class=\"dropdown-menu scrollable-menu\" style=\"display:block\">\n    <li mentio-menu-item=\"item\" ng-repeat=\"item in items track by $index\">\n        <a class=\"text-primary\" ng-bind-html=\"item.label | mentioHighlight:typedTerm:\'menu-highlighted\' | unsafe\"></a>\n    </li>\n</ul>");}]);
+angular.module("mentio").run(["$templateCache", function($templateCache) {$templateCache.put("mentio-menu.tpl.html","<style>\r\n.scrollable-menu {\r\n    height: auto;\r\n    max-height: 300px;\r\n    overflow: auto;\r\n}\r\n\r\n.menu-highlighted {\r\n    font-weight: bold;\r\n}\r\n</style>\r\n<ul class=\"dropdown-menu scrollable-menu\" style=\"display:block\">\r\n    <li mentio-menu-item=\"item\" ng-repeat=\"item in items track by $index\">\r\n        <a class=\"text-primary\" ng-bind-html=\"item.label | mentioHighlight:typedTerm:\'menu-highlighted\' | unsafe\"></a>\r\n    </li>\r\n</ul>");}]);
